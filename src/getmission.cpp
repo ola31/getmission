@@ -68,16 +68,16 @@ void mission_Callback(const std_msgs::UInt16 msg)
         ROS_INFO("md_driver start");
 
         command = "gnome-terminal -- rosrun md_driver md_driver_demo_node";
-	c = command.c_str();
-	system(c);
+        c = command.c_str();
+        system(c);
     }
 
     else if(msg.data == 70){
         ROS_INFO("Joystick start");
 
         command = "gnome-terminal -- roslaunch rosjoy_to_cmdvel rosjoy_to_cmdvel.launch";
-	c = command.c_str();
-	system(c);
+        c = command.c_str();
+        system(c);
     }
 
 
@@ -101,6 +101,14 @@ void mission_Callback(const std_msgs::UInt16 msg)
         //system(p);
         //system(s);
     }
+
+    if(msg.data == 20){
+        ROS_INFO("Front CAM ON");
+        std::string command_cam = "gnome-terminal -- roslaunch usb_cam usb_cam-test.launch video_divice:=/dev/vidio0";
+        const char *c_cam = command.c_str();
+        system(c_cam);
+    }
+
 
 
 
@@ -139,6 +147,12 @@ void mission_Callback(const std_msgs::UInt16 msg)
         command_stop7 = "rosnode kill /joy_node /rosjoy_2_cmdvel_node /teleop_twist_joy";
         j = command_stop7.c_str();
         system(j);
+    }
+
+    else if(msg.data == 21){
+        std::string command_stop_cam = "rosnode kill /usb_cam";
+        const char *stop_cam_c = command_stop7.c_str();
+        system(stop_cam_c);
     }
     
 
