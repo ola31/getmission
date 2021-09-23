@@ -27,6 +27,7 @@ const char *s;
 const char *m;
 const char *j;
 
+void run_sub_pub_again_node(void);
 
 void mission_Callback(const std_msgs::UInt16 msg)
 {
