@@ -157,7 +157,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     
 
     if(msg.data == 99){
-
+       run_sub_pub_again_node();
     }
 
 
