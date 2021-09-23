@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string>
 
+//#include <cstdlib>
+
 std::string command;
 std::string command_stop1;
 std::string command_stop2;
@@ -165,17 +167,16 @@ void mission_Callback(const std_msgs::UInt16 msg)
 }
 
 void run_sub_pub_again_node(void){
-  std::string command_run_node = "gnome-terminal -- rosrun sub_pub_again sub_pub_again_node ";
+  std::string command_run_node = "gnome-terminal -x rosrun sub_pub_again sub_pub_again_node";
   const char *c_runnode = command_run_node.c_str();
   system(c_runnode);
+  //std::system("rosrun sub_pub_again sub_pub_again_node");
 }
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "getmission");
     ros::NodeHandle nh;
-
-    run_sub_pub_again_node();
 
     ros::Subscriber sub = nh.subscribe("mission", 10, mission_Callback);
 
