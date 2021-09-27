@@ -1,5 +1,4 @@
 <launch>
     <node pkg="getmission" type="getmission" name="getmission"/>
     <node pkg="getmission" type="getmission_ready" name="getmission_ready"/>
-    <node pkg="sub_pub_again" type="sub_pub_again_node" name="sub_pub_again" launch-prefix="gnome-terminal --command"/>
 </launch>
