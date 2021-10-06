@@ -51,8 +51,8 @@ void mission_Callback(const std_msgs::UInt16 msg)
     if(msg.data == 1){
         ROS_INFO("Mission: AutoDriving");
 
-        command = "gnome-terminal -- rosrun autodriving_state autodriving_state";
-        command_stop1 = "rosnode kill /autodriving_state";
+        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node";
+        command_stop1 = "rosnode kill /auto_parking_new_node";
     }
 
     else if(msg.data == 2){
@@ -64,17 +64,17 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
     else if(msg.data == 3){
         ROS_INFO("Mission: Obstacle");
-        //command = "gnome-terminal -- rosrun lidar_range wall_following";
+        command = "gnome-terminal -- rosrun obstacle_avoid_new obstacle_avoid_new_node";
         //command_stop3 = "rosnode kill /wall_following";
-        command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
-        command_stop3 = "rosnode kill /turtlesim";
+        //command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
+        command_stop3 = "rosnode kill /obstacle_avoid_new_node";
     }
 
     else if(msg.data == 4){
         ROS_INFO("Mission: Parking");
 
-        command = "gnome-terminal -x bash -c 'rosrun lidar_range drok3_parking'";
-        command_stop4 = "rosnode kill /drok3_parking";
+        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node'";
+        command_stop4 = "rosnode kill /auto_parking_new_node";
     }
 
     else if(msg.data == 5){
@@ -112,10 +112,12 @@ void mission_Callback(const std_msgs::UInt16 msg)
         a = command_stop1.c_str();
         d = command_stop2.c_str();
         o = command_stop3.c_str();
+        oo = command_stop4.c_str();
 
         system(a);
         system(d);
         system(o);
+        system(oo);
         //system(p);
         //system(s);
     }
