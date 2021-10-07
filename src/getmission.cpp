@@ -56,8 +56,8 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 4){
         ROS_INFO("Mission: Parking");
 
-        command = "gnome-terminal -- rosrun lidar_range drok3_parking";
-        command_stop4 = "rosnode kill /drok3_parking";
+        command = "gnome-terminal -- roslaunch auto_parking_new auto_parking_new.launch";
+        command_stop4 = "rosnode kill /auto_parking_new /ydlidar_node /base_link_to_laser4";
     }
 
     else if(msg.data == 5){
