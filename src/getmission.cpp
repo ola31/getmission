@@ -39,6 +39,7 @@ const char *c;
 const char *a;
 const char *d;
 const char *o;
+const char *oo;
 const char *p;
 const char *s;
 
@@ -73,13 +74,10 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 4){
         ROS_INFO("Mission: Parking");
 
-<<<<<<< HEAD
+
         command = "gnome-terminal -- roslaunch auto_parking_new auto_parking_new.launch";
         command_stop4 = "rosnode kill /auto_parking_new /ydlidar_node /base_link_to_laser4";
-=======
-        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node'";
-        command_stop4 = "rosnode kill /auto_parking_new_node";
->>>>>>> 7687dfaff9de0440c93f69b5ce20228226876a49
+
     }
 
     else if(msg.data == 5){
