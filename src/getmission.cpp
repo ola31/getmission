@@ -7,6 +7,24 @@
 #include <stdlib.h>
 #include <string>
 
+
+void run_sub_pub_again_node(void);
+/*
+#include <pthread.h>
+#include <unistd.h>
+void *t_function(void *data){
+  pid_t pid;
+  pthread_t tid;
+
+  pid = getpid();
+  tid = pthread_self();
+
+  char * thread_name = (char*)data;
+  run_sub_pub_again_node();
+}
+*/
+//#include <cstdlib>
+
 std::string command;
 std::string command_stop1;
 std::string command_stop2;
@@ -27,15 +45,14 @@ const char *s;
 const char *m;
 const char *j;
 
-void run_sub_pub_again_node(void);
 
 void mission_Callback(const std_msgs::UInt16 msg)
 {
     if(msg.data == 1){
         ROS_INFO("Mission: AutoDriving");
 
-        command = "gnome-terminal -- rosrun autodriving_state autodriving_state";
-        command_stop1 = "rosnode kill /autodriving_state";
+        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node";
+        command_stop1 = "rosnode kill /auto_parking_new_node";
     }
 
     else if(msg.data == 2){
@@ -47,17 +64,22 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
     else if(msg.data == 3){
         ROS_INFO("Mission: Obstacle");
-        //command = "gnome-terminal -- rosrun lidar_range wall_following";
+        command = "gnome-terminal -- rosrun obstacle_avoid_new obstacle_avoid_new_node";
         //command_stop3 = "rosnode kill /wall_following";
-        command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
-        command_stop3 = "rosnode kill /turtlesim";
+        //command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
+        command_stop3 = "rosnode kill /obstacle_avoid_new_node";
     }
 
     else if(msg.data == 4){
         ROS_INFO("Mission: Parking");
 
+<<<<<<< HEAD
         command = "gnome-terminal -- roslaunch auto_parking_new auto_parking_new.launch";
         command_stop4 = "rosnode kill /auto_parking_new /ydlidar_node /base_link_to_laser4";
+=======
+        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node'";
+        command_stop4 = "rosnode kill /auto_parking_new_node";
+>>>>>>> 7687dfaff9de0440c93f69b5ce20228226876a49
     }
 
     else if(msg.data == 5){
@@ -95,18 +117,20 @@ void mission_Callback(const std_msgs::UInt16 msg)
         a = command_stop1.c_str();
         d = command_stop2.c_str();
         o = command_stop3.c_str();
+        oo = command_stop4.c_str();
 
         system(a);
         system(d);
         system(o);
+        system(oo);
         //system(p);
         //system(s);
     }
 
     if(msg.data == 20){
         ROS_INFO("Front CAM ON");
-        std::string command_cam = "gnome-terminal -- roslaunch usb_cam usb_cam-test.launch video_divice:=/dev/vidio0";
-        const char *c_cam = command.c_str();
+        std::string command_cam = "gnome-terminal -- roslaunch usb_cam usb_cam-test.launch video_divice:=/dev/video0";
+        const char *c_cam = command_cam.c_str();
         system(c_cam);
     }
 
@@ -152,7 +176,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
     else if(msg.data == 21){
         std::string command_stop_cam = "rosnode kill /usb_cam";
-        const char *stop_cam_c = command_stop7.c_str();
+        const char *stop_cam_c = command_stop_cam.c_str();
         system(stop_cam_c);
     }
     
@@ -165,18 +189,32 @@ void mission_Callback(const std_msgs::UInt16 msg)
 }
 
 void run_sub_pub_again_node(void){
-  std::string command_run_node = "gnome-terminal -- rosrun sub_pub_again sub_pub_again_node ";
+  std::string command_run_node = "gnome-terminal -x rosrun sub_pub_again sub_pub_again_node";
+  //std::string command_run_node = "/home/kudos/script/sub_pub_again_start.sh";
+  //std::string command_run_node = "gnome-terminal -x bash /home/kudos/ping_check";
   const char *c_runnode = command_run_node.c_str();
   system(c_runnode);
+  //std::system("rosrun sub_pub_again sub_pub_again_node");
 }
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "getmission");
     ros::NodeHandle nh;
+/*
+    pthread_t p_thread[2];
+    int thr_id;
+    int status;
+    char p1[] = "thread 1";
 
-    run_sub_pub_again_node();
-
+    thr_id = pthread_create(&p_thread[0],NULL,t_function, (void *)p1);
+    if(thr_id <0){
+      perror("thread create error");
+      exit(0);
+    }
+    pthread_join(p_thread[0], (void **)&status);
+*/
+    //run_sub_pub_again_node();
     ros::Subscriber sub = nh.subscribe("mission", 10, mission_Callback);
 
 
