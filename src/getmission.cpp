@@ -46,6 +46,15 @@ const char *s;
 const char *m;
 const char *j;
 
+void cmd_string_Callback(const std_msgs::String::ConstPtr& cmd_msg)
+{
+  std::string command_string = cmd_msg->data;
+  std::string adding_string = "gnome-terminal -- ";
+  std::string command_string2 = adding_string+command_string;
+  const char *s_cmd = command_string2.c_str();
+  system(s_cmd);
+
+}
 
 void mission_Callback(const std_msgs::UInt16 msg)
 {
@@ -214,6 +223,7 @@ int main(int argc, char **argv)
 */
     //run_sub_pub_again_node();
     ros::Subscriber sub = nh.subscribe("mission", 10, mission_Callback);
+    ros::Subscriber cmd_string_sub = nh.subscribe("/gui_terminal_command", 10, cmd_string_Callback);
 
 
     ros::spin();
