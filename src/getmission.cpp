@@ -85,7 +85,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
 
         command = "gnome-terminal -- roslaunch auto_parking_new auto_parking_new.launch";
-        command_stop4 = "rosnode kill /auto_parking_new /ydlidar_node /base_link_to_laser4";
+        command_stop4 = "rosnode kill /auto_parking_new_node /ydlidar_node /base_link_to_laser4";
 
     }
 
