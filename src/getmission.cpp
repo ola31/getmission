@@ -74,10 +74,10 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
     else if(msg.data == 3){
         ROS_INFO("Mission: Obstacle");
-        command = "gnome-terminal -- rosrun obstacle_avoid_new obstacle_avoid_new_node";
+        command = "gnome-terminal -- roslaunch obstacle_avoid_new obstacle_avoid_new.launch";
         //command_stop3 = "rosnode kill /wall_following";
         //command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
-        command_stop3 = "rosnode kill /obstacle_avoid_new_node";
+        command_stop3 = "rosnode kill /obstacle_avoid_new_node /ydlidar_node /base_link_to_laser4";
     }
 
     else if(msg.data == 4){
