@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="getmission" type="getmission" name="getmission"/>
+    <node pkg="getmission" type="getmission" name="getmission" output="screen"/>
     <node pkg="getmission" type="getmission_ready" name="getmission_ready"/>
     <node pkg="screenshot" type="screenshot2.py" name="screenshot_node"/>
 </launch>

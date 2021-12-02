@@ -97,7 +97,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 60){
         ROS_INFO("md_driver start");
 
-        command = "gnome-terminal -- rosrun md_driver md_driver_demo_node";
+        command = "gnome-terminal -- roslaunch rt_thread rt_thread.launch";
         c = command.c_str();
         system(c);
     }
@@ -170,7 +170,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 61){
-        command_stop6 = "rosnode kill /md_driver_node";
+        command_stop6 = "rosnode kill /rt_thread_node";
         m = command_stop6.c_str();
         system(m);
     }
