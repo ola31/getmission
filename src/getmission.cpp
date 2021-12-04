@@ -170,7 +170,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 61){
-        command_stop6 = "rosnode kill /rt_thread_node";
+        command_stop6 = "rosnode kill /rt_thread_node /back_hand_controller_node";
         m = command_stop6.c_str();
         system(m);
     }
