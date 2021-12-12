@@ -136,7 +136,8 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
     if(msg.data == 20){
         ROS_INFO("Front CAM ON");
-        std::string command_cam = "gnome-terminal -- roslaunch usb_cam usb_cam-test.launch video_divice:=/dev/video0";
+        //std::string command_cam = "gnome-terminal -- roslaunch usb_cam usb_cam-test.launch video_divice:=/dev/video0";
+        std::string command_cam = "gnome-terminal -- roslaunch usb_cam kudos_cam_A.launch";
         const char *c_cam = command_cam.c_str();
         system(c_cam);
     }
@@ -182,7 +183,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 21){
-        std::string command_stop_cam = "rosnode kill /usb_cam";
+        std::string command_stop_cam = "rosnode kill /kudos_cam_A";
         const char *stop_cam_c = command_stop_cam.c_str();
         system(stop_cam_c);
     }
