@@ -183,7 +183,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 21){
-        std::string command_stop_cam = "rosnode kill /kudos_cam_A";
+        std::string command_stop_cam = "rosnode kill /kudos_cam_A /exchange_image_nuc1";
         const char *stop_cam_c = command_stop_cam.c_str();
         system(stop_cam_c);
     }
