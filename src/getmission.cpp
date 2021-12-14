@@ -61,8 +61,8 @@ void mission_Callback(const std_msgs::UInt16 msg)
     if(msg.data == 1){
         ROS_INFO("Mission: AutoDriving");
 
-        command = "gnome-terminal -- rosrun run auto_parking_new auto_parking_new_node";
-        command_stop1 = "rosnode kill /auto_parking_new_node";
+        command = "gnome-terminal -- roslaunch drive_test drive_test.launch";
+        command_stop1 = "rosnode kill /kudos_cam_B /stop_line_node /test360_mode_node";
     }
 
     else if(msg.data == 2){
